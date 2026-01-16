@@ -103,15 +103,57 @@ export default function App() {
                         <Text>Specific meal  card placeholder</Text>
                     </View>
                 </View>
-                <View style={{ backgroundColor: '#f9fafb', flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
-                    <View style={[styles.card, { flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
-                        <Droplet />
-                        <Text>Water</Text>
+                <View
+                    style={{
+                        backgroundColor: '#f9fafb',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        gap: 10,
+                    }}
+                >
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                flex: 1,
+                            },
+                        ]}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                gap: 6,
+                                marginBottom: 6,
+                            }}
+                        >
+                            <Droplet />
+                            <Text style={{ fontWeight: '600' }}>Water</Text>
+                        </View>
+                        <Text style={{ fontSize: 12 }}>Consumption ratio</Text>
+                        <Text style={{ fontSize: 12 }}>Consumption scale</Text>
                     </View>
-
-                    <View style={[styles.card, { flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
-                        <Weight />
-                        <Text>Weight</Text>
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                flex: 1,
+                            },
+                        ]}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                gap: 6,
+                                marginBottom: 6,
+                            }}
+                        >
+                            <Weight />
+                            <Text style={{ fontWeight: '600' }}>Weight</Text>
+                        </View>
+                        <Text style={{ fontSize: 10 }}>Current weight placeholder</Text>
+                        <Text style={{ fontSize: 10 }}>Weight lost placeholder</Text>
                     </View>
                 </View>
             </ScrollView>
