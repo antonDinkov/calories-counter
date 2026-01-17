@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { Book, Droplet, House, Plus, TrendingUp, User, Weight } from 'lucide-react-native';
-import { Dimensions, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { RadialSlider } from 'react-native-radial-slider';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { CircularSlider } from './components/CircularSlider';
 import { useState } from 'react';
 import Macronutrients from './components/Macronutrents';
+import AddFood from './components/AddFood';
 
 export default function App() {
     const { width } = Dimensions.get('screen');
@@ -20,6 +19,11 @@ export default function App() {
 
     const [consumedFat, setConsumedFat] = useState(0);
     const [goalFat, setGoalFat] = useState(65);
+
+    const [modalView, setModalView] = useState(false);
+    const toggleModal = () => {
+        setModalView(prevView => !prevView);
+    }
 
     /* const DAILY_GOAL = 2000;
     const consumedCalories = 750;
@@ -52,7 +56,8 @@ export default function App() {
                             <Text>Breakfast</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Plus />
+                        <Plus onPress={toggleModal} />
+                        <AddFood modalView={modalView} toggleModal={toggleModal} />
                     </View>
                     <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
                         <Text>Specific meal  card placeholder</Text>
