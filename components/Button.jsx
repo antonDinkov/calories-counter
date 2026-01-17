@@ -2,8 +2,11 @@ import { Pressable, StyleSheet, Text } from "react-native";
 
 export default function Button(props) {
     return (
-        <Pressable style={[styles.button, {backgroundColor: props.backGroundBtn}]} onPress={props.onPress}>
-            <Text style={{color: props.textBtn || 'black'}}>{props.title}</Text>
+        <Pressable style={[styles.button, { backgroundColor: props.backGroundBtn }]} onPress={() => {
+            if (props.close) props.close();
+            if (props.onPress) props.onPress();
+        }}>
+            <Text style={{ color: props.textBtn || 'black' }}>{props.title}</Text>
         </Pressable>
     )
 }
