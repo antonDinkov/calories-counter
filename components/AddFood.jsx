@@ -1,4 +1,4 @@
-import { Modal, Text, View, StyleSheet } from "react-native";
+import { Modal, Text, View, StyleSheet, Pressable } from "react-native";
 
 export default function AddFood(props) {
   return (
@@ -8,11 +8,11 @@ export default function AddFood(props) {
       animationType="fade"
       onRequestClose={props.toggleModal}
     >
-      <View style={styles.overlay}>
+      <Pressable style={styles.overlay} onPress={props.toggleModal}>
         <View style={styles.modalBox}>
           <Text style={styles.title}>This is the modal</Text>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 }

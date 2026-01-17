@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Book, Droplet, House, Plus, TrendingUp, User, Weight } from 'lucide-react-native';
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import Macronutrients from './components/Macronutrents';
@@ -56,7 +56,9 @@ export default function App() {
                             <Text>Breakfast</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Plus onPress={toggleModal} />
+                        <Pressable onPress={toggleModal} hitSlop={10}>
+                            <Plus />
+                        </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} />
                     </View>
                     <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
