@@ -4,10 +4,21 @@ import { Dimensions, ScrollView, StyleSheet, Text, useWindowDimensions, View } f
 import { RadialSlider } from 'react-native-radial-slider';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CircularSlider } from './components/CircularSlider';
+import { useState } from 'react';
 
 export default function App() {
     const { width } = Dimensions.get('screen');
     const sliderSize = width / 5;
+    const [caloriesLimit, setCaloriesLimit] = useState(2000);
+
+    const [consumedProtein, setConsumedProtein] = useState(0);
+    const [goalProtein, setGoalProtein] = useState(150);
+
+    const [consumedCarbs, setConsumedCarbs] = useState(0);
+    const [goalCarbs, setGoalCarbs] = useState(200);
+
+    const [consumedFat, setConsumedFat] = useState(0);
+    const [goalFat, setGoalFat] = useState(65);
 
     /* const DAILY_GOAL = 2000;
     const consumedCalories = 750;
@@ -20,7 +31,7 @@ export default function App() {
             </SafeAreaView>
             <ScrollView contentContainerStyle={styles.body}>
                 <View style={styles.card}>
-                    <Text>2000</Text>
+                    <Text>{caloriesLimit}</Text>
                     <Text>Calories Remaining</Text>
                 </View>
                 <View style={styles.card}>
@@ -28,30 +39,30 @@ export default function App() {
                     <View style={{ flexDirection: 'row', gap: 10 }}>
                         <View style={{ alignItems: 'center' }}>
                             <CircularSlider
-                                consumed={150}
-                                goal={150}
+                                consumed={consumedProtein}
+                                goal={goalProtein}
                                 size={sliderSize}
                             />
                             <Text>Protein</Text>
-                            <Text>{150}g goal</Text>
+                            <Text>{goalProtein}g goal</Text>
                         </View>
                         <View style={{ alignItems: 'center' }}>
                             <CircularSlider
-                                consumed={95}
-                                goal={200}
+                                consumed={consumedCarbs}
+                                goal={goalCarbs}
                                 size={sliderSize}
                             />
                             <Text>Carbs</Text>
-                            <Text>{200}g goal</Text>
+                            <Text>{goalCarbs}g goal</Text>
                         </View>
                         <View style={{ alignItems: 'center' }}>
                             <CircularSlider
-                                consumed={22}
-                                goal={65}
+                                consumed={consumedFat}
+                                goal={goalFat}
                                 size={sliderSize}
                             />
                             <Text>Fat</Text>
-                            <Text>{65}g goal</Text>
+                            <Text>{goalFat}g goal</Text>
                         </View>
                     </View>
                 </View>

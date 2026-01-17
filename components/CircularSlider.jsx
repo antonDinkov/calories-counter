@@ -58,7 +58,7 @@ export function CircularSlider({
           justifyContent: 'center',
         }}
       >
-        <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {remaining}
         </Text>
         <Text style={{fontSize: 10}}>left</Text>
