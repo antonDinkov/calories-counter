@@ -61,8 +61,8 @@ export default function App() {
                 <StatusBar style="auto" />
             </SafeAreaView>
             <ScrollView contentContainerStyle={styles.body}>
-                <View style={styles.card}>
-                    <Text>{caloriesLimit}</Text>
+                <View style={[styles.card, {alignItems: 'center'}]}>
+                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{caloriesLimit}</Text>
                     <Text>Calories Remaining</Text>
                 </View>
                 <View style={styles.card}>
