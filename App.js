@@ -10,6 +10,27 @@ export default function App() {
     const { width } = Dimensions.get('screen');
     const sliderSize = width / 5;
     const [caloriesLimit, setCaloriesLimit] = useState(2000);
+    const [nutritionData, setNutritionData] = useState({});
+
+    const nutritionDataHandler = (data) => {
+        setNutritionData(data);
+        caloriesHandler(data.calories)
+        const protein = Number(data.protein);
+        setConsumedProtein(prev => prev + protein);
+        const carbs = Number(data.carbs);
+        setConsumedCarbs(prev => prev + carbs);
+        const fats = Number(data.fat);
+        setConsumedFat(prev => prev + fats);
+    }
+    const caloriesHandler = (inputCalories) => {
+    const caloriesNumber = Number(inputCalories);
+    if (caloriesNumber > caloriesLimit) {
+        setCaloriesLimit(0);
+    } else {
+        setCaloriesLimit(oldAmmount => oldAmmount - caloriesNumber);
+    }
+}
+
 
     const [consumedProtein, setConsumedProtein] = useState(0);
     const [goalProtein, setGoalProtein] = useState(150);
@@ -64,7 +85,7 @@ export default function App() {
                         <Pressable onPress={() => {mealTimeSetter('Breakfast'); toggleModal()}} hitSlop={10}>
                             <Plus />
                         </Pressable>
-                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} />
+                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
                     <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
                         <Text>Specific meal  card placeholder</Text>

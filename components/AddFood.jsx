@@ -1,8 +1,14 @@
 import { Modal, Text, View, StyleSheet, Pressable, TextInput } from "react-native";
 import Button from "./Button";
 import { X } from "lucide-react-native";
+import { useState } from "react";
 
 export default function AddFood(props) {
+    const [foodName, setFoodName] = useState('');
+    const [calories, setCalories] = useState('');
+    const [protein, setProtein] = useState('');
+    const [carbs, setCarbs] = useState('');
+    const [fat, setFat] = useState('');
     return (
         <Modal
             visible={props.modalView}
@@ -20,29 +26,32 @@ export default function AddFood(props) {
                     </View>
                     <View>
                         <Text>Food Name</Text>
-                        <TextInput style={styles.input} placeholder="e.g. Pizza slice" />
+                        <TextInput style={styles.input} placeholder="e.g. Pizza slice" value={foodName} onChangeText={setFoodName} />
                     </View>
                     <View>
                         <Text>Calories</Text>
-                        <TextInput style={styles.input} placeholder="0" keyboardType="numeric" />
+                        <TextInput style={styles.input} placeholder="0" keyboardType="numeric" value={calories} onChangeText={setCalories} />
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View>
                             <Text>Protein (g)</Text>
-                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" keyboardType="numeric" />
+                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" keyboardType="numeric" value={protein} onChangeText={setProtein} />
                         </View>
                         <View>
                             <Text>Carbs (g)</Text>
-                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" />
+                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" value={carbs} onChangeText={setCarbs} />
                         </View>
                         <View>
                             <Text>Fat (g)</Text>
-                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" />
+                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" value={fat} onChangeText={setFat} />
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Button title={'Back'} close={props.toggleModal} />
-                        <Button title={'Add Food'} backGroundBtn={'black'} textBtn={'white'} />
+                        <Button title={'Add Food'} backGroundBtn={'black'} textBtn={'white'} onPress={() => {
+                            props.nutriDataExtractor({ foodName, calories, protein, carbs, fat });
+                            props.toggleModal();
+                        }} />
                     </View>
                 </Pressable>
             </Pressable>
