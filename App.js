@@ -28,7 +28,7 @@ export default function App() {
                     <View style={{ flexDirection: 'row', gap: 10 }}>
                         <View style={{ alignItems: 'center' }}>
                             <CircularSlider
-                                consumed={60}
+                                consumed={150}
                                 goal={150}
                                 size={sliderSize}
                             />

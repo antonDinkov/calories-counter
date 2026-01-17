@@ -22,7 +22,7 @@ export function CircularSlider({
       <Svg width={size} height={size}>
         {/* Background */}
         <Circle
-          stroke="#E0E0E0"
+          stroke="#4CAF50"
           fill="none"
           cx={size / 2}
           cy={size / 2}
@@ -32,7 +32,7 @@ export function CircularSlider({
 
         {/* Progress */}
         <Circle
-          stroke="#4CAF50"
+          stroke="red"
           fill="none"
           cx={size / 2}
           cy={size / 2}
@@ -61,6 +61,7 @@ export function CircularSlider({
         <Text style={{ fontSize: 15, fontWeight: 'bold' }}>
           {remaining}
         </Text>
+        <Text style={{fontSize: 10}}>left</Text>
       </View>
     </View>
   );
