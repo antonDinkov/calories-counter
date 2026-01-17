@@ -5,6 +5,7 @@ import { RadialSlider } from 'react-native-radial-slider';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CircularSlider } from './components/CircularSlider';
 import { useState } from 'react';
+import Macronutrients from './components/Macronutrents';
 
 export default function App() {
     const { width } = Dimensions.get('screen');
@@ -35,36 +36,15 @@ export default function App() {
                     <Text>Calories Remaining</Text>
                 </View>
                 <View style={styles.card}>
-                    <Text>Macronutrients</Text>
-                    <View style={{ flexDirection: 'row', gap: 10 }}>
-                        <View style={{ alignItems: 'center' }}>
-                            <CircularSlider
-                                consumed={consumedProtein}
-                                goal={goalProtein}
-                                size={sliderSize}
-                            />
-                            <Text>Protein</Text>
-                            <Text>{goalProtein}g goal</Text>
-                        </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <CircularSlider
-                                consumed={consumedCarbs}
-                                goal={goalCarbs}
-                                size={sliderSize}
-                            />
-                            <Text>Carbs</Text>
-                            <Text>{goalCarbs}g goal</Text>
-                        </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <CircularSlider
-                                consumed={consumedFat}
-                                goal={goalFat}
-                                size={sliderSize}
-                            />
-                            <Text>Fat</Text>
-                            <Text>{goalFat}g goal</Text>
-                        </View>
-                    </View>
+                    <Macronutrients
+                        consumedProtein={consumedProtein}
+                        goalProtein={goalProtein}
+                        consumedCarbs={consumedCarbs}
+                        goalCarbs={goalCarbs}
+                        consumedFat={consumedFat}
+                        goalFat={goalFat}
+                        sliderSize={sliderSize}
+                    />
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
