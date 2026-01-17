@@ -9,9 +9,9 @@ export default function AddFood(props) {
       onRequestClose={props.toggleModal}
     >
       <Pressable style={styles.overlay} onPress={props.toggleModal}>
-        <View style={styles.modalBox}>
+        <Pressable style={styles.modalBox} onPress={() => {}}>
           <Text style={styles.title}>This is the modal</Text>
-        </View>
+        </Pressable>
       </Pressable>
     </Modal>
   );
