@@ -10,7 +10,7 @@ export default function AddFood(props) {
     >
       <Pressable style={styles.overlay} onPress={props.toggleModal}>
         <Pressable style={styles.modalBox} onPress={() => {}}>
-          <Text style={styles.title}>This is the modal</Text>
+          <Text style={styles.title}>Add Food to {props.mealTime}</Text>
         </Pressable>
       </Pressable>
     </Modal>

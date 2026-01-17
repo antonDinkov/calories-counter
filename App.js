@@ -25,6 +25,11 @@ export default function App() {
         setModalView(prevView => !prevView);
     }
 
+    const [mealTime, setMealTime] = useState('');
+    const mealTimeSetter = (time) => {
+        setMealTime(time);
+    }
+
     /* const DAILY_GOAL = 2000;
     const consumedCalories = 750;
     const remainingCalories = DAILY_GOAL - consumedCalories; */
@@ -56,10 +61,10 @@ export default function App() {
                             <Text>Breakfast</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Pressable onPress={toggleModal} hitSlop={10}>
+                        <Pressable onPress={() => {mealTimeSetter('breakfast'); toggleModal()}} hitSlop={10}>
                             <Plus />
                         </Pressable>
-                        <AddFood modalView={modalView} toggleModal={toggleModal} />
+                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} />
                     </View>
                     <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
                         <Text>Specific meal  card placeholder</Text>
