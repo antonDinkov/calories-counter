@@ -61,7 +61,7 @@ export default function App() {
                             <Text>Breakfast</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Pressable onPress={() => {mealTimeSetter('breakfast'); toggleModal()}} hitSlop={10}>
+                        <Pressable onPress={() => {mealTimeSetter('Breakfast'); toggleModal()}} hitSlop={10}>
                             <Plus />
                         </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} />
