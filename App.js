@@ -5,9 +5,10 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import Macronutrients from './components/Macronutrents';
 import AddFood from './components/AddFood';
+import MealHolder from './components/MealHolder';
 
 export default function App() {
-    const { width } = Dimensions.get('screen');
+    const { width } = Dimensions.get('window');
     const sliderSize = width / 5;
     const [caloriesLimit, setCaloriesLimit] = useState(2000);
     const [nutritionData, setNutritionData] = useState({});
@@ -87,9 +88,7 @@ export default function App() {
                         </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
-                        <Text>Specific meal  card placeholder</Text>
-                    </View>
+                    <MealHolder />
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
