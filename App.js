@@ -103,7 +103,8 @@ export default function App() {
                         </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    <MealHolder />
+                    {breakfastCounter.length > 0 && breakfastCounter.map((meal, index) => <MealHolder key={index} data={meal} /> )}
+                    
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
