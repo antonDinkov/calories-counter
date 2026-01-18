@@ -12,9 +12,24 @@ export default function App() {
     const sliderSize = width / 5;
     const [caloriesLimit, setCaloriesLimit] = useState(2000);
     const [nutritionData, setNutritionData] = useState({});
+    const [breakfastCounter, setBreakfastCounter] = useState([]);
+    const [lunchCounter, setLunchCounter] = useState([]);
+    const [dinnerCounter, setDinnerCounter] = useState([]);
+    const [snacksCounter, setSnacksCounter] = useState([]);
 
-    const nutritionDataHandler = (data) => {
+    const nutritionDataHandler = (data, type) => {
         setNutritionData(data);
+        if (type == 'breakfast') {
+            setBreakfastCounter(oldData => [...oldData, data]);
+        } else if (type == 'lunch') {
+            setLunchCounter(oldData => [...oldData, data]);
+        } else if (type == 'dinner') {
+            setDinnerCounter(oldData => [...oldData, data]);
+        } else if (type == 'snacks') {
+            setSnacksCounter(oldData => [...oldData, data]);
+        } else {
+            return;
+        }
         caloriesHandler(data.calories)
         const protein = Number(data.protein);
         setConsumedProtein(prev => prev + protein);
