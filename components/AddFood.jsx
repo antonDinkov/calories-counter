@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         cursor: 'default'
     },
     modalBox: {
-        width: "80%",
+        width: "70%",
         backgroundColor: "#fff",
         padding: 20,
         borderRadius: 12,
