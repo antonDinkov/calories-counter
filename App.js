@@ -30,15 +30,15 @@ export default function App() {
         } else {
             return;
         }
-        caloriesHandler(data.calories)
+        caloriesHandler(data, 'down')
         const protein = Number(data.protein);
-        setConsumedProtein(prev => prev + protein);
+        setConsumedProtein(prev => (prev + protein >= goalProtein ? prev + protein : goalProtein));
         const carbs = Number(data.carbs);
         setConsumedCarbs(prev => prev + carbs);
         const fats = Number(data.fat);
         setConsumedFat(prev => prev + fats);
     }
-    const mealRemoveHandler = (type, i) => {
+    const mealRemoveHandler = (type, i, data) => {
         if (type.toLowerCase() == 'breakfast') {
             setBreakfastCounter(oldData => oldData.filter((_, index) => index !== i));
         } else if (type.toLowerCase() == 'lunch') {
@@ -50,15 +50,37 @@ export default function App() {
         } else {
             return;
         }
+
+        caloriesHandler(data, 'up')
     }
-    const caloriesHandler = (inputCalories) => {
-    const caloriesNumber = Number(inputCalories);
-    if (caloriesNumber > caloriesLimit) {
-        setCaloriesLimit(0);
-    } else {
-        setCaloriesLimit(oldAmmount => oldAmmount - caloriesNumber);
+    const caloriesHandler = (data, direction) => {
+        const caloriesNumber = Number(data.calories);
+        if (direction == 'up') {
+            if (caloriesNumber + caloriesLimit > 2000) {
+                setCaloriesLimit(2000);
+                const protein = Number(data.protein);
+                setConsumedProtein(prev => (prev - protein >= 0 ? prev - protein : 0));
+                const carbs = Number(data.carbs);
+                setConsumedCarbs(prev => prev - carbs);
+                const fats = Number(data.fat);
+                setConsumedFat(prev => prev - fats);
+            } else {
+                setCaloriesLimit(oldAmmount => oldAmmount + caloriesNumber);
+                const protein = Number(data.protein);
+                setConsumedProtein(prev => prev - protein);
+                const carbs = Number(data.carbs);
+                setConsumedCarbs(prev => prev - carbs);
+                const fats = Number(data.fat);
+                setConsumedFat(prev => prev - fats);
+            }
+        } else if (direction == 'down') {
+            if (caloriesNumber > caloriesLimit) {
+                setCaloriesLimit(0);
+            } else {
+                setCaloriesLimit(oldAmmount => oldAmmount - caloriesNumber);
+            }
+        }
     }
-}
 
 
     const [consumedProtein, setConsumedProtein] = useState(0);
@@ -90,8 +112,8 @@ export default function App() {
                 <StatusBar style="auto" />
             </SafeAreaView>
             <ScrollView contentContainerStyle={styles.body}>
-                <View style={[styles.card, {alignItems: 'center'}]}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{caloriesLimit}</Text>
+                <View style={[styles.card, { alignItems: 'center' }]}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{caloriesLimit}</Text>
                     <Text>Calories Remaining</Text>
                 </View>
                 <View style={styles.card}>
@@ -111,13 +133,13 @@ export default function App() {
                             <Text>Breakfast</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Pressable onPress={() => {mealTimeSetter('Breakfast'); toggleModal()}} hitSlop={10}>
+                        <Pressable onPress={() => { mealTimeSetter('Breakfast'); toggleModal() }} hitSlop={10}>
                             <Plus />
                         </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    {breakfastCounter.length > 0 && breakfastCounter.map((meal, index) => <MealHolder mealTime={'Breakfast'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} /> )}
-                    
+                    {breakfastCounter.length > 0 && breakfastCounter.map((meal, index) => <MealHolder mealTime={'Breakfast'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} />)}
+
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>

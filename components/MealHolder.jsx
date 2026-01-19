@@ -17,7 +17,7 @@ export default function MealHolder(props) {
                     <View style={styles.dot} />
                     <Text style={styles.nutruTextStyle}>F: {props.data.fat}g</Text>
                 </View>
-                <Pressable style={styles.button} onPress={() => props.removeHandler(props.mealTime, props.index)}>
+                <Pressable style={styles.button} onPress={() => props.removeHandler(props.mealTime, props.index, props.data)}>
                     <Text style={[styles.remove, styles.nutruTextStyle]}>Remove</Text>
                 </Pressable>
             </View>
