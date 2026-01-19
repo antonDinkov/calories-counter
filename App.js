@@ -9,7 +9,7 @@ import MealHolder from './components/MealHolder';
 
 export default function App() {
     const { width } = Dimensions.get('window');
-    const sliderSize = width / 5;
+    const sliderSize = width / 7;
     const [caloriesLimit, setCaloriesLimit] = useState(2000);
     const [nutritionData, setNutritionData] = useState({});
     const [breakfastCounter, setBreakfastCounter] = useState([]);
