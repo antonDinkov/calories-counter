@@ -49,7 +49,7 @@ export default function AddFood(props) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Button title={'Back'} close={props.toggleModal} />
                         <Button title={'Add Food'} backGroundBtn={'black'} textBtn={'white'} onPress={() => {
-                            props.nutriDataExtractor({ foodName, calories, protein, carbs, fat });
+                            props.nutriDataExtractor({ foodName, calories, protein, carbs, fat }, props.mealTime);
                             props.toggleModal();
                         }} />
                     </View>

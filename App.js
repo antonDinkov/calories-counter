@@ -9,7 +9,7 @@ import MealHolder from './components/MealHolder';
 
 export default function App() {
     const { width } = Dimensions.get('window');
-    const sliderSize = width / 7;
+    const sliderSize = width / 5;
     const [caloriesLimit, setCaloriesLimit] = useState(2000);
     const [nutritionData, setNutritionData] = useState({});
     const [breakfastCounter, setBreakfastCounter] = useState([]);
@@ -19,13 +19,13 @@ export default function App() {
 
     const nutritionDataHandler = (data, type) => {
         setNutritionData(data);
-        if (type == 'breakfast') {
+        if (type.toLowerCase() == 'breakfast') {
             setBreakfastCounter(oldData => [...oldData, data]);
-        } else if (type == 'lunch') {
+        } else if (type.toLowerCase() == 'lunch') {
             setLunchCounter(oldData => [...oldData, data]);
-        } else if (type == 'dinner') {
+        } else if (type.toLowerCase() == 'dinner') {
             setDinnerCounter(oldData => [...oldData, data]);
-        } else if (type == 'snacks') {
+        } else if (type.toLowerCase() == 'snacks') {
             setSnacksCounter(oldData => [...oldData, data]);
         } else {
             return;
