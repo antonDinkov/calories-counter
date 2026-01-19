@@ -38,6 +38,19 @@ export default function App() {
         const fats = Number(data.fat);
         setConsumedFat(prev => prev + fats);
     }
+    const mealRemoveHandler = (type, i) => {
+        if (type.toLowerCase() == 'breakfast') {
+            setBreakfastCounter(oldData => oldData.filter((_, index) => index !== i));
+        } else if (type.toLowerCase() == 'lunch') {
+            setLunchCounter(oldData => oldData.filter((_, index) => index !== i));
+        } else if (type.toLowerCase() == 'dinner') {
+            setDinnerCounter(oldData => oldData.filter((_, index) => index !== i));
+        } else if (type.toLowerCase() == 'snacks') {
+            setSnacksCounter(oldData => oldData.filter((_, index) => index !== i));
+        } else {
+            return;
+        }
+    }
     const caloriesHandler = (inputCalories) => {
     const caloriesNumber = Number(inputCalories);
     if (caloriesNumber > caloriesLimit) {
@@ -103,7 +116,7 @@ export default function App() {
                         </Pressable>
                         <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    {breakfastCounter.length > 0 && breakfastCounter.map((meal, index) => <MealHolder key={index} data={meal} /> )}
+                    {breakfastCounter.length > 0 && breakfastCounter.map((meal, index) => <MealHolder mealTime={'Breakfast'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} /> )}
                     
                 </View>
                 <View style={styles.card}>
