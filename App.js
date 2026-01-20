@@ -6,16 +6,20 @@ import { useState } from 'react';
 import Macronutrients from './components/Macronutrents';
 import AddFood from './components/AddFood';
 import MealHolder from './components/MealHolder';
+import Slider from '@react-native-community/slider';
 
 export default function App() {
     const { width } = Dimensions.get('window');
     const sliderSize = width / 5;
-    const [caloriesLimit, setCaloriesLimit] = useState(2000);
+    const [limit, setLimit] = useState(2000)
+    const [caloriesLimit, setCaloriesLimit] = useState(limit);
     const [nutritionData, setNutritionData] = useState({});
     const [breakfastCounter, setBreakfastCounter] = useState([]);
     const [lunchCounter, setLunchCounter] = useState([]);
     const [dinnerCounter, setDinnerCounter] = useState([]);
     const [snacksCounter, setSnacksCounter] = useState([]);
+
+    const consumedCalories = limit - caloriesLimit;
 
     const nutritionDataHandler = (data, type) => {
         setNutritionData(data);
@@ -89,9 +93,6 @@ export default function App() {
         setMealTime(time);
     }
 
-    /* const DAILY_GOAL = 2000;
-    const consumedCalories = 750;
-    const remainingCalories = DAILY_GOAL - consumedCalories; */
     return (
         <SafeAreaProvider style={styles.container}>
             <SafeAreaView style={styles.head} >
@@ -102,6 +103,16 @@ export default function App() {
                 <View style={[styles.card, { alignItems: 'center' }]}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{caloriesLimit}</Text>
                     <Text>Calories Remaining</Text>
+                    <Slider
+                        style={styles.slider}
+                        minimumValue={0}
+                        maximumValue={limit}
+                        value={consumedCalories}
+                        step={1}
+                        minimumTrackTintColor="#4F46E5"   // активна част
+                        maximumTrackTintColor="#D1D5DB"   // неактивна част
+                        thumbTintColor="#4F46E5"          // кръгчето
+                    />
                 </View>
                 <View style={styles.card}>
                     <Macronutrients
@@ -252,4 +263,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-evenly',
     },
+    slider: {
+        width: "100%",
+        height: 40,
+    }
 });
