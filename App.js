@@ -32,7 +32,7 @@ export default function App() {
         }
         caloriesHandler(data, 'down')
         const protein = Number(data.protein);
-        setConsumedProtein(prev => (prev + protein >= goalProtein ? prev + protein : goalProtein));
+        setConsumedProtein(prev => (prev + protein >= goalProtein ? goalProtein : prev + protein));
         const carbs = Number(data.carbs);
         setConsumedCarbs(prev => prev + carbs);
         const fats = Number(data.fat);
@@ -54,31 +54,18 @@ export default function App() {
         caloriesHandler(data, 'up')
     }
     const caloriesHandler = (data, direction) => {
-        const caloriesNumber = Number(data.calories);
         if (direction == 'up') {
-            if (caloriesNumber + caloriesLimit > 2000) {
-                setCaloriesLimit(2000);
-                const protein = Number(data.protein);
-                setConsumedProtein(prev => (prev - protein >= 0 ? prev - protein : 0));
-                const carbs = Number(data.carbs);
-                setConsumedCarbs(prev => prev - carbs);
-                const fats = Number(data.fat);
-                setConsumedFat(prev => prev - fats);
-            } else {
-                setCaloriesLimit(oldAmmount => oldAmmount + caloriesNumber);
-                const protein = Number(data.protein);
-                setConsumedProtein(prev => prev - protein);
-                const carbs = Number(data.carbs);
-                setConsumedCarbs(prev => prev - carbs);
-                const fats = Number(data.fat);
-                setConsumedFat(prev => prev - fats);
-            }
+            const caloriesNumber = Number(data.calories);
+            setCaloriesLimit(prev => (caloriesNumber + prev > 2000 ? 2000 : caloriesNumber + prev));
+            const protein = Number(data.protein);
+            setConsumedProtein(prev => (prev - protein >= 0 ? prev - protein : 0));
+            const carbs = Number(data.carbs);
+            setConsumedCarbs(prev => (prev - carbs >= 0 ? prev - carbs : 0));
+            const fats = Number(data.fat);
+            setConsumedFat(prev => (prev - fats >= 0 ? prev - fats : 0));
         } else if (direction == 'down') {
-            if (caloriesNumber > caloriesLimit) {
-                setCaloriesLimit(0);
-            } else {
-                setCaloriesLimit(oldAmmount => oldAmmount - caloriesNumber);
-            }
+            const caloriesNumber = Number(data.calories);
+            setCaloriesLimit(prev => (caloriesNumber > prev ? 0 : prev - caloriesNumber));
         }
     }
 
