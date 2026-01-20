@@ -24,6 +24,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b009273b-ee1a-48e7-983f-68a946901009"
+      }
+    },
+    "owner": "antonexpo123",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b009273b-ee1a-48e7-983f-68a946901009"
     }
   }
 }
