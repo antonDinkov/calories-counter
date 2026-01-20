@@ -6,7 +6,6 @@ import { useState } from 'react';
 import Macronutrients from './components/Macronutrents';
 import AddFood from './components/AddFood';
 import MealHolder from './components/MealHolder';
-import Slider from '@react-native-community/slider';
 import Calories from './components/Calories';
 
 export default function App() {
