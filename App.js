@@ -7,10 +7,11 @@ import Macronutrients from './components/Macronutrents';
 import AddFood from './components/AddFood';
 import MealHolder from './components/MealHolder';
 import Slider from '@react-native-community/slider';
+import Calories from './components/Calories';
 
 export default function App() {
     const { width } = Dimensions.get('window');
-    const sliderSize = width / 5;
+    const sliderSize = width / 4.3;
     const [limit, setLimit] = useState(2000)
     const [caloriesLimit, setCaloriesLimit] = useState(limit);
     const [nutritionData, setNutritionData] = useState({});
@@ -101,18 +102,7 @@ export default function App() {
             </SafeAreaView>
             <ScrollView contentContainerStyle={styles.body}>
                 <View style={[styles.card, { alignItems: 'center' }]}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{caloriesLimit}</Text>
-                    <Text>Calories Remaining</Text>
-                    <Slider
-                        style={styles.slider}
-                        minimumValue={0}
-                        maximumValue={limit}
-                        value={consumedCalories}
-                        step={1}
-                        minimumTrackTintColor="#4F46E5"   // активна част
-                        maximumTrackTintColor="#D1D5DB"   // неактивна част
-                        thumbTintColor="#4F46E5"          // кръгчето
-                    />
+                    <Calories caloriesLimit={caloriesLimit} limit={limit} consumedCalories={consumedCalories} />
                 </View>
                 <View style={styles.card}>
                     <Macronutrients
@@ -254,7 +244,8 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
         padding: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        width: '90%'
     },
     footer: {
         position: 'static',
