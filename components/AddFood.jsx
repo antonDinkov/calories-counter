@@ -39,11 +39,11 @@ export default function AddFood(props) {
                         </View>
                         <View>
                             <Text>Carbs (g)</Text>
-                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" value={carbs} onChangeText={setCarbs} />
+                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" keyboardType="numeric" value={carbs} onChangeText={setCarbs} />
                         </View>
                         <View>
                             <Text>Fat (g)</Text>
-                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" value={fat} onChangeText={setFat} />
+                            <TextInput style={[styles.input, styles.inputMacros]} placeholder="0" keyboardType="numeric" value={fat} onChangeText={setFat} />
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
