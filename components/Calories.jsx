@@ -23,7 +23,7 @@ export default function Calories(props) {
                 </View>
                 <View>
                     <Text>Food</Text>
-                    <Text>{props.consumedCalories}</Text>
+                    <Text>{props.totalConsumedCalories()}</Text>
                 </View>
                 <View>
                     <Text>Exercise</Text>
@@ -37,6 +37,6 @@ export default function Calories(props) {
 const styles = StyleSheet.create({
     slider: {
         width: "100%",
-        height: 40,
+        height: 80,
     }
 })

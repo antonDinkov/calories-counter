@@ -20,6 +20,12 @@ export default function App() {
     const [dinnerCounter, setDinnerCounter] = useState([]);
     const [snacksCounter, setSnacksCounter] = useState([]);
 
+    const totalConsumedCalories = () => {
+        const allMeals = [breakfastCounter, lunchCounter, dinnerCounter, snacksCounter];
+        return allMeals.flat().reduce((sum, meal) => sum + Number(meal.calories), 0);
+    };
+
+
     const consumedCalories = limit - caloriesLimit;
 
     const nutritionDataHandler = (data, type) => {
@@ -102,7 +108,7 @@ export default function App() {
             </SafeAreaView>
             <ScrollView contentContainerStyle={styles.body}>
                 <View style={[styles.card, { alignItems: 'center' }]}>
-                    <Calories caloriesLimit={caloriesLimit} limit={limit} consumedCalories={consumedCalories} />
+                    <Calories caloriesLimit={caloriesLimit} limit={limit} consumedCalories={consumedCalories} totalConsumedCalories={totalConsumedCalories} />
                 </View>
                 <View style={styles.card}>
                     <Macronutrients
@@ -135,11 +141,12 @@ export default function App() {
                             <Text>Lunch</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Plus />
+                        <Pressable onPress={() => { mealTimeSetter('Lunch'); toggleModal() }} hitSlop={10}>
+                            <Plus />
+                        </Pressable>
+                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
-                        <Text>Specific meal  card placeholder</Text>
-                    </View>
+                    {lunchCounter.length > 0 && lunchCounter.map((meal, index) => <MealHolder mealTime={'Lunch'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} />)}
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
@@ -147,11 +154,12 @@ export default function App() {
                             <Text>Dinner</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Plus />
+                        <Pressable onPress={() => { mealTimeSetter('Dinner'); toggleModal() }} hitSlop={10}>
+                            <Plus />
+                        </Pressable>
+                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
-                        <Text>Specific meal  card placeholder</Text>
-                    </View>
+                    {dinnerCounter.length > 0 && dinnerCounter.map((meal, index) => <MealHolder mealTime={'Dinner'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} />)}
                 </View>
                 <View style={styles.card}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
@@ -159,11 +167,12 @@ export default function App() {
                             <Text>Snacks</Text>
                             <Text>Calories Taken</Text>
                         </View>
-                        <Plus />
+                        <Pressable onPress={() => { mealTimeSetter('Snacks'); toggleModal() }} hitSlop={10}>
+                            <Plus />
+                        </Pressable>
+                        <AddFood modalView={modalView} toggleModal={toggleModal} mealTime={mealTime} nutriDataExtractor={nutritionDataHandler} />
                     </View>
-                    <View style={{ backgroundColor: '#f9fafb', padding: 7, alignItems: 'center' }}>
-                        <Text>Specific meal  card placeholder</Text>
-                    </View>
+                    {snacksCounter.length > 0 && snacksCounter.map((meal, index) => <MealHolder mealTime={'Snacks'} index={index} key={index} data={meal} removeHandler={mealRemoveHandler} />)}
                 </View>
                 <View
                     style={{
